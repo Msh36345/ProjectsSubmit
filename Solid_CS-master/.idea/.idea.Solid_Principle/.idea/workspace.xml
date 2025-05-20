@@ -8,7 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="974b2401-2c36-4a0c-840f-67883a643b60" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../IDF_Operation /IDF-Project" beforeDir="false" afterPath="$PROJECT_DIR$/../IDF_Operation /IDF-Project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Solid_Principle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Solid_Principle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseLogger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmergencyHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EmergencyHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileLogger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IEmailAlert.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IEmailAlert.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ILogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ILogger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ISmsAlert.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ISmsAlert.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RocketLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RocketLauncher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TelemetrySender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TelemetrySender.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +45,10 @@
     <setting file="file://$PROJECT_DIR$/IEmailAlert.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ILogger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ISmsAlert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RocketLauncher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TelemetrySender.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -54,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "moshe",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -95,7 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1747769095732</updated>
-      <workItem from="1747769096958" duration="1278000" />
+      <workItem from="1747769096958" duration="4469000" />
     </task>
     <task id="LOCAL-00001" summary="add branch">
       <option name="closed" value="true" />
@@ -111,6 +121,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
