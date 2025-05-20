@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "series_analyzer", "series_analyzer\series_analyzer.csproj", "{83CD2047-E791-4F0D-A117-4C56A4DC8029}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83CD2047-E791-4F0D-A117-4C56A4DC8029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83CD2047-E791-4F0D-A117-4C56A4DC8029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83CD2047-E791-4F0D-A117-4C56A4DC8029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83CD2047-E791-4F0D-A117-4C56A4DC8029}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
