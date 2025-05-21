@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Solid_Principle
-{
-    internal class EmergencyHandler
-    {
-    namespace Solid_Principle
+﻿namespace Solid_Principle
     {
         public class EmergencyHandler
         {
