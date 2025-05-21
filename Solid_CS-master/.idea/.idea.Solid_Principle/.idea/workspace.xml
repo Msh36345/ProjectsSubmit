@@ -9,14 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="974b2401-2c36-4a0c-840f-67883a643b60" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Solid_Principle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Solid_Principle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseLogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmergencyHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EmergencyHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FileLogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IEmailAlert.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IEmailAlert.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ILogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ILogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISmsAlert.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ISmsAlert.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RocketLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RocketLauncher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TelemetrySender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TelemetrySender.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,18 +18,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Msh36345"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Msh36345&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Msh36345/ProjectsSubmit.git",
-    "accountId": "93d84f14-5181-4c91-8bd1-b0d9f3ddd255"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Msh36345/ProjectsSubmit.git&quot;,
+    &quot;accountId&quot;: &quot;93d84f14-5181-4c91-8bd1-b0d9f3ddd255&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/DatabaseLogger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/EmergencyHandler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -49,30 +41,30 @@
     <setting file="file://$PROJECT_DIR$/TelemetrySender.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2xNCMT89tR7eLemOB7Fw8Gake5P" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Solid_Principle" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -106,6 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1747769095732</updated>
       <workItem from="1747769096958" duration="4469000" />
+      <workItem from="1747807447686" duration="337000" />
     </task>
     <task id="LOCAL-00001" summary="add branch">
       <option name="closed" value="true" />
