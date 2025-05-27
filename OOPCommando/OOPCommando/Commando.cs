@@ -3,9 +3,9 @@ namespace OOPCommando;
 public class Commando
 {
     private string Name;
-    private string CodeName;
-    private string[] equipment = { "Hammer", "Chisel", "Rope", "Bag", "Canteen" };
-    private string status;
+    public string CodeName { get; set; }
+    public string[] equipment = { "Hammer", "Chisel", "Rope", "Bag", "Canteen" };
+    public string status;
 
     public Commando(string name , string codeName)
     {
@@ -24,10 +24,27 @@ public class Commando
         Console.WriteLine($"{CodeName} is hideing.");
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         status = "attack";
         Console.WriteLine($"💥{CodeName} is attacking.");
         
+    }
+
+    public string SayName(string commanderRank)
+    {
+        if (commanderRank.ToUpper().Equals("GENERAL"))
+        {
+            return Name;
+        }
+
+        if (commanderRank.ToUpper().Equals("COLONEL"))
+        {
+            return CodeName;
+        }
+        else
+        {
+            return "The soldier’s name is classified";
+        }
     }
 }
