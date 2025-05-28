@@ -12,5 +12,10 @@ public class Game
         enemy = new EnemyFactory();
         weapon = new WeaponsFactory();
     }
+
+    public void Start()
+    {
+        
+    }
     
 }
