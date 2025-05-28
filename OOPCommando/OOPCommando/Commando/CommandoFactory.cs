@@ -4,7 +4,7 @@ public class CommandoFactory
 {
     private Dictionary<Type,List<Commando>> commandos;
 
-    CommandoFactory()
+    public CommandoFactory()
     {
         commandos = new Dictionary<Type,List<Commando>>();
     }

@@ -4,7 +4,7 @@ public class EnemyFactory
 {
     private List<Enemy> enemys;
 
-    EnemyFactory()
+    public EnemyFactory()
     {
         enemys = new List<Enemy>();
     }

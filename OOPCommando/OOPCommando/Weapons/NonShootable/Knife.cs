@@ -1,6 +1,6 @@
 namespace OOPCommando;
 
-public class WeponsFactory
+public class Knife
 {
     
 }
