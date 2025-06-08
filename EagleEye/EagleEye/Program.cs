@@ -14,23 +14,23 @@ class Program
         agentDal.AddAgent(agent2);
 
         Console.WriteLine("print agents after adding");
-        List<Agent> list = agentDal.GatAllAgents();
+        List<Agent> list = agentDal.GetAllAgents();
         foreach (Agent agent in list)
         {
             Console.WriteLine(agent.ToString());
         }
 
         Console.WriteLine("update id 1 location");
-        agentDal.UpdateAgentLocition(1,"tel aviv");
+        agentDal.UpdateAgentLocation(1,"tel aviv");
         
         Console.WriteLine("print agents after edit");
-        agentDal.PrintAllAgent();
+        agentDal.PrintAllAgents();
         
         Console.WriteLine("delete id 2");
         agentDal.DeleteAgent(2);
         
         Console.WriteLine("print agents after deleteing");
-        agentDal.PrintAllAgent();
+        agentDal.PrintAllAgents();
         
         
 

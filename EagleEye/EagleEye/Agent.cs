@@ -2,12 +2,12 @@ namespace EagleEye;
 
 public class Agent
 {
-    private int Id;
-    private string CodeName;
-    private string RealName;
-    private string Location;
-    private string Status;
-    private int MissionsCompleted;
+    public int Id;
+    public string CodeName;
+    public string RealName;
+    public string Location;
+    public string Status;
+    public int MissionsCompleted;
 
     public Agent(int id, string codeName, string realName, string location, string status, int missionsCompleted)
     {
