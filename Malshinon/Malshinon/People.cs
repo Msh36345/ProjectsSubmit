@@ -38,7 +38,7 @@ public static class People
         return 0;
     }
 
-    public static void CreatePeople()
+    public static void CreatePeople(string type)
     {
         string[] name = Users.AskForName();
         string firstName = name[0];
@@ -62,15 +62,48 @@ public static class People
                     cmd.ExecuteNonQuery();
                 }
             }
-            Console.WriteLine($"User {firstName} created!!\nYour secret code is : {code}");
+
+            switch (type)
+            {
+                case "Reporter":
+                Console.WriteLine($"User {firstName} created!!\nYour secret code is : {code}");
+                Users.LogIn();
+                    break;
+                case "Target":
+                    SetToTarget(code);
+                    break;
+            }
+
         }
         catch (Exception ex)
         {
             Console.WriteLine("Error : " + ex.Message);
         }
-
-        Users.LogIn();
     }
+    public static void SetToTarget(string code)
+    {
+        string query = "UPDATE People SET type = @type WHERE secret_code = @code";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+
+        try
+        {
+            using (var conn = new MySqlConnection(connstring))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", "Target");
+                    cmd.Parameters.AddWithValue("@code", code);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error : " + ex.Message);
+        }
+    }
+
     
 
 }
