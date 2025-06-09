@@ -41,7 +41,7 @@ public static class People
     public static void CreatePeople(string type)
     {
         string[] name = Users.AskForName();
-        string firstName = name[0];
+        string firstName = string.Join(" ",name.Take(name.Length-1));
         string lastName = name.Length > 1 ? name[1] : "";
         string code = Users.CreateSecretCode();
 
@@ -80,7 +80,7 @@ public static class People
             Console.WriteLine("Error : " + ex.Message);
         }
     }
-    public static void SetToTarget(string code)
+    static void SetToTarget(string code)
     {
         string query = "UPDATE People SET type = @type WHERE secret_code = @code";
         string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
@@ -101,6 +101,96 @@ public static class People
         catch (Exception ex)
         {
             Console.WriteLine("Error : " + ex.Message);
+        }
+    }
+
+    public static void GetSecretCode()
+    {
+        string[] name = Users.AskForName();
+        string query = $"SELECT secret_code FROM People WHERE first_name = '{name[0]}' AND last_name = '{name[1]}'";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string codeName = reader.GetString("secret_code");
+                        Console.WriteLine($"Your secret code is : {codeName}");
+                    }
+                }
+            }
+        }
+        catch (MySqlException)
+        {
+            Console.WriteLine("Database access error");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
+        
+    }
+
+    public static void UpdateNumReports(int id)
+    {
+        string query = $"UPDATE People SET num_reports = num_reports + @add WHERE id = @id";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        object add = 1;
+
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@add",add);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (MySqlException)
+        {
+            Console.WriteLine("Database access error");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
+    }
+    
+    public static void UpdateNumMentions(int id)
+    {
+        string query = $"UPDATE People SET num_mentions = num_mentions + @add WHERE id = @id";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        object add = 1;
+
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@add",add);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (MySqlException)
+        {
+            Console.WriteLine("Database access error");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
         }
     }
 
