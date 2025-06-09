@@ -6,8 +6,7 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(
-            Users.LogIn());
+            
         }
     }
 }
