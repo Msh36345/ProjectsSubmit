@@ -76,6 +76,7 @@ public static class People
     {
         string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
         string query = $"SELECT * FROM People WHERE type = '{type}' ORDER BY num_reports DESC, num_mentions DESC";
+        int id = 0;
         try
         {
             using (var connection = new MySqlConnection(connstring))
@@ -87,18 +88,71 @@ public static class People
                 {
                     while (reader.Read())
                     {
-                        int id = reader.GetInt32("id"); 
+                        id = reader.GetInt32("id"); 
                         string first_name = reader.GetString("first_name"); 
                         string last_name = reader.GetString("last_name"); 
                         string secret_code = reader.GetString("secret_code"); 
                         int num_reports = reader.GetInt32("num_reports");
                         int num_mentions = reader.GetInt32("num_mentions");
-
+                    
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine($"ID : {id}\n" +
                                           $"Name : {first_name+" "+last_name}\n" +
                                           $"Secret code : {secret_code}\n" +
                                           $"Num reports : {num_reports}\n" +
                                           $"Num mentions : {num_mentions}\n");
+                    }
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine("MySQL Error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
+        if (type=="potential_agent")
+        {
+            int avg = GetAvgLengthReport(id);
+            Console.WriteLine($"Average report length : {avg}");
+        }
+        Console.ResetColor();
+    }
+    
+    public static void GetDetailsByID()
+    {
+        Console.Write("Choice ID to check : ");
+        int id = int.Parse(Console.ReadLine());
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        string query = $"SELECT * FROM People WHERE id = '{id}'";
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+    
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string first_name = reader.GetString("first_name"); 
+                        string last_name = reader.GetString("last_name"); 
+                        string secret_code = reader.GetString("secret_code"); 
+                        string type = reader.GetString("type"); 
+                        int num_reports = reader.GetInt32("num_reports");
+                        int num_mentions = reader.GetInt32("num_mentions");
+
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine($"ID : {id}\n" +
+                                          $"Name : {first_name+" "+last_name}\n" +
+                                          $"Secret code : {secret_code}\n" +
+                                          $"Type : {type}\n" +
+                                          $"Num reports : {num_reports}\n" +
+                                          $"Num mentions : {num_mentions}\n");
+                        Console.ResetColor();
                     }
                 }
             }
@@ -296,11 +350,12 @@ public static class People
     {
         int reports = nums[0];
         int mentions = nums[1];
+        CheckAlertTime(id);
         if (reports>0 && mentions>0)
         {
             UpdateType(id,"Both");
         }
-        else if (reports>=20 && mentions==0 && GetAvgLengthReport(id)>=100)
+        else if (reports>=10 && mentions==0 && GetAvgLengthReport(id)>=100)
         {
             UpdateType(id,"potential_agent");
         }
@@ -309,6 +364,7 @@ public static class People
             UpdateType(id,"Target");
             if (mentions>=20)
             {
+                Alerts.AddAlert(id, $"{mentions} reports detected");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"id : {id} is a potential threat.");
                 Console.ResetColor();
@@ -345,6 +401,45 @@ public static class People
         catch (Exception ex)
         {
             Console.WriteLine("General Error: " + ex.Message);
+        }
+    }
+    static void CheckAlertTime(int id)
+    {
+        string query = $"SELECT COUNT(timestamp) as count FROM IntelReports WHERE target_id = {id} AND timestamp BETWEEN NOW() -INTERVAL 15 MINUTE AND NOW()";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        int countTime = 0;
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        countTime=reader.GetInt32("count");
+                    }
+                }
+            }
+        }
+        catch (MySqlException)
+        {
+            Console.WriteLine("Database access error");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
+
+        if (countTime>=3)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"ID : {id} is a potential threat\n" +
+                              $"Time stamp : {DateTime.Now}\n" +
+                              $"Reason : rapid reports detected");
+            Console.ResetColor();
+            Alerts.AddAlert(id, "rapid reports detected in the last 15 minutes");
         }
     }
 }
