@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS MalshinonDB;
 USE MalshinonDB;
 DROP TABLE IF EXISTS People;
 DROP TABLE IF EXISTS IntelReports;
+DROP TABLE IF EXISTS Alerts;
+
 
 CREATE TABLE People(
                        id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,4 +23,12 @@ CREATE TABLE IntelReports(
                              timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                              FOREIGN KEY (reporter_id) REFERENCES People (id),
                              FOREIGN KEY (target_id) REFERENCES People (id)
+);
+
+CREATE TABLE Alerts(
+                       id_Alerts INT AUTO_INCREMENT PRIMARY KEY,
+                       target_id INT NOT NULL,
+                       reason TEXT(256) NOT NULL,
+                       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                       FOREIGN KEY (target_id) REFERENCES People (id)
 );
