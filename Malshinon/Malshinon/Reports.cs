@@ -18,6 +18,7 @@ public static class Reports
         People.UpdateAndCheckThresholds(idTarget);
         People.UpdateAndCheckThresholds(idReporter);
     }
+    
     static string ReportText()
     {
         Console.WriteLine("Thank you very much for coming to snitch, please type the report :");

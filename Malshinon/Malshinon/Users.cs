@@ -14,6 +14,7 @@ public static class Users
         }
         return id;
     }
+    
     public static string[] AskForName(bool search = false)
     {
         while (true)
