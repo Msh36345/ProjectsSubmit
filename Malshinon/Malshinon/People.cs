@@ -179,7 +179,6 @@ public static class People
         }
     }
     
-
     public static void GetListByType(string type)
     {
         string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
@@ -285,6 +284,7 @@ public static class People
         }
         return avg;
     }
+    
     static int[] GetThresholds(int id)
     {
         string query = $"SELECT `num_reports`,`num_mentions` FROM People WHERE id = '{id}'";
