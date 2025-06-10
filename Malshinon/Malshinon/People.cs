@@ -37,56 +37,7 @@ public static class People
         }
         return 0;
     }
-
-    public static void CreateReporter()
-    {
-        string[] name = Users.AskForName();
-        CreatePeople(name,true);
-    }
     
-    public static void CreateTarget(string[] name)
-    {
-        CreatePeople(name);
-
-    }
-    
-    static void CreatePeople(string[] name,bool newp = false)
-    {
-        string firstName = name.Length> 1 ? string.Join(" ",name.Take(name.Length-1)) : name[0];
-        string lastName = name.Length > 1 ? name[1] : "";
-        string code = Users.CreateSecretCode();
-
-        
-        string query = "INSERT INTO People (first_name, last_name, secret_code) VALUES (@first_name, @last_name, @secret_code)";
-        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
-
-        try
-        {
-            using (var conn = new MySqlConnection(connstring))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@first_name", firstName);
-                    cmd.Parameters.AddWithValue("@last_name", lastName);
-                    cmd.Parameters.AddWithValue("@secret_code", code);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            if (newp)
-            {
-                Console.WriteLine($"User {firstName} created!!\nYour secret code is : {code}");
-                Menu.Start();
-            }
-
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error : " + ex.Message);
-        }
-    }
-
     public static void GetSecretCode()
     {
         string[] name = Users.AskForName(true);
@@ -119,64 +70,6 @@ public static class People
             Console.WriteLine("General Error: " + ex.Message);
         }
         
-    }
-
-    public static void UpdateNumReports(int id)
-    {
-        string query = $"UPDATE People SET num_reports = num_reports + @add WHERE id = @id";
-        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
-        object add = 1;
-
-        try
-        {
-            using (var connection = new MySqlConnection(connstring))
-            {
-                connection.Open();
-                using (var cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@add",add);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        catch (MySqlException)
-        {
-            Console.WriteLine("Database access error");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("General Error: " + ex.Message);
-        }
-    }
-    
-    public static void UpdateNumMentions(int id)
-    {
-        string query = $"UPDATE People SET num_mentions = num_mentions + @add WHERE id = @id";
-        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
-        object add = 1;
-
-        try
-        {
-            using (var connection = new MySqlConnection(connstring))
-            {
-                connection.Open();
-                using (var cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@add",add);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        catch (MySqlException)
-        {
-            Console.WriteLine("Database access error");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("General Error: " + ex.Message);
-        }
     }
     
     public static void GetListByType(string type)
@@ -220,57 +113,75 @@ public static class People
         }
     }
 
-    public static void UpdateAndCheckThresholds(int id)
+
+
+    
+    public static void CreateReporter()
     {
-        int[] thresholds = GetThresholds(id);
-        CheckThresholds(thresholds,id);
+        string[] name = Users.AskForName();
+        CreatePeople(name,true);
+    }
+    public static void CreateTarget(string[] name)
+    {
+        CreatePeople(name);
+
+    }
+    static void CreatePeople(string[] name,bool newp = false)
+    {
+        string firstName = name.Length> 1 ? string.Join(" ",name.Take(name.Length-1)) : name[0];
+        string lastName = name.Length > 1 ? name[1] : "";
+        string code = Users.CreateSecretCode();
+
+        
+        string query = "INSERT INTO People (first_name, last_name, secret_code) VALUES (@first_name, @last_name, @secret_code)";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+
+        try
+        {
+            using (var conn = new MySqlConnection(connstring))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@first_name", firstName);
+                    cmd.Parameters.AddWithValue("@last_name", lastName);
+                    cmd.Parameters.AddWithValue("@secret_code", code);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            if (newp)
+            {
+                Console.WriteLine($"User {firstName} created!!\nYour secret code is : {code}");
+                Menu.Start();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error : " + ex.Message);
+        }
     }
     
-    static void CheckThresholds(int[] nums, int id)
-    {
-        int reports = nums[0];
-        int mentions = nums[1];
-        if (reports>0 && mentions>0)
-        {
-            UpdateType(id,"Both");
-        }
-        else if (reports>=20 && mentions==0 && GetAvgLengthReport(id)>=100)
-        {
-            UpdateType(id,"potential_agent");
-        }
-        else if (reports==0 && mentions>0)
-        {
-            UpdateType(id,"Target");
-            if (mentions>=20)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"id : {id} is a potential threat.");
-                Console.ResetColor();
-            }
-        }
-        else
-        {
-            UpdateType(id,"Reporter");
-        }
-    }
 
-    static int GetAvgLengthReport(int id)
+        
+
+    public static void UpdateNumReports(int id)
     {
-        string query = $"SELECT AVG(LENGTH(text)) AS avg FROM IntelReports WHERE id = '{id}'";
+        string query = $"UPDATE People SET num_reports = num_reports + @add WHERE id = @id";
         string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
-        int avg = 0;
+        object add = 1;
+
         try
         {
             using (var connection = new MySqlConnection(connstring))
             {
                 connection.Open();
                 using (var cmd = new MySqlCommand(query, connection))
-                using (var reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        avg=reader.GetInt32("avg");
-                    }
+                    cmd.Parameters.AddWithValue("@add",add);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -282,9 +193,44 @@ public static class People
         {
             Console.WriteLine("General Error: " + ex.Message);
         }
-        return avg;
+    }
+    public static void UpdateNumMentions(int id)
+    {
+        string query = $"UPDATE People SET num_mentions = num_mentions + @add WHERE id = @id";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        object add = 1;
+
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@add",add);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (MySqlException)
+        {
+            Console.WriteLine("Database access error");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
     }
     
+    
+    
+    
+    public static void UpdateAndCheckThresholds(int id)
+    {
+        int[] thresholds = GetThresholds(id);
+        CheckThresholds(thresholds,id);
+    }
     static int[] GetThresholds(int id)
     {
         string query = $"SELECT `num_reports`,`num_mentions` FROM People WHERE id = '{id}'";
@@ -316,7 +262,63 @@ public static class People
         }
         return nums;
     }
-    
+    static int GetAvgLengthReport(int id)
+    {
+        string query = $"SELECT AVG(LENGTH(text)) AS avg FROM IntelReports WHERE id = '{id}'";
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        int avg = 0;
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        avg=reader.GetInt32("avg");
+                    }
+                }
+            }
+        }
+        catch (MySqlException)
+        {
+            Console.WriteLine("Database access error");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
+        return avg;
+    }
+    static void CheckThresholds(int[] nums, int id)
+    {
+        int reports = nums[0];
+        int mentions = nums[1];
+        if (reports>0 && mentions>0)
+        {
+            UpdateType(id,"Both");
+        }
+        else if (reports>=20 && mentions==0 && GetAvgLengthReport(id)>=100)
+        {
+            UpdateType(id,"potential_agent");
+        }
+        else if (reports==0 && mentions>0)
+        {
+            UpdateType(id,"Target");
+            if (mentions>=20)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"id : {id} is a potential threat.");
+                Console.ResetColor();
+            }
+        }
+        else
+        {
+            UpdateType(id,"Reporter");
+        }
+    }
     static void UpdateType(int id,string type)
     {
         string query = $"UPDATE People SET type = @type WHERE id = @id";
@@ -345,5 +347,4 @@ public static class People
             Console.WriteLine("General Error: " + ex.Message);
         }
     }
-    
 }
