@@ -7,7 +7,7 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
-            Users.LogIn();
+            Menu.Start();
         }
     }
 }

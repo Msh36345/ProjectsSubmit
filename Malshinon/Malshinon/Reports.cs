@@ -9,10 +9,14 @@ public static class Reports
         int idTarget =People.ChecksIfUserExists(name[0]);
         if (idTarget==0)
         {
-            People.CreatePeople("Target");
+            People.CreateTarget(name);
+            idTarget =People.ChecksIfUserExists(name[0]);
         }
-
         IntelReports.AddReport(idTarget, report,idReporter);
+        People.UpdateNumMentions(idTarget);
+        People.UpdateNumReports(idReporter);
+        People.UpdateAndCheckThresholds(idTarget);
+        People.UpdateAndCheckThresholds(idReporter);
     }
     static string ReportText()
     {
