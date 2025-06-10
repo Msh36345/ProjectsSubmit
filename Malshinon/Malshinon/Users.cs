@@ -9,7 +9,7 @@ public static class Users
         int id = People.ChecksIfUserExists(login);
         if (id==0)
         {
-           People.CreatePeople("Reporter");
+           People.CreatePeople(true);
            id = People.ChecksIfUserExists(login);
         }
         return id;

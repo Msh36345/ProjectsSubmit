@@ -9,7 +9,7 @@ public static class Reports
         int idTarget =People.ChecksIfUserExists(name[0]);
         if (idTarget==0)
         {
-            People.CreatePeople("Target");
+            People.CreatePeople();
         }
 
         IntelReports.AddReport(idTarget, report,idReporter);
