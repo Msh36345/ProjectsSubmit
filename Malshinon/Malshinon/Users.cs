@@ -9,12 +9,12 @@ public static class Users
         int id = People.ChecksIfUserExists(login);
         if (id==0)
         {
-           People.CreatePeople(true);
+           People.CreateReporter();
            id = People.ChecksIfUserExists(login);
         }
         return id;
     }
-    public static string[] AskForName()
+    public static string[] AskForName(bool search = false)
     {
         while (true)
         {
@@ -30,7 +30,14 @@ public static class Users
             }
             else
             {
-                Console.WriteLine("This name already exists, Try again.");
+                if (search)
+                {
+                    return name;
+                }
+                else
+                {
+                    Console.WriteLine("This name already exists, Try again.");
+                }
             }
         }
     }

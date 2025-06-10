@@ -38,9 +38,20 @@ public static class People
         return 0;
     }
 
-    public static void CreatePeople(bool print = false)
+    public static void CreateReporter()
     {
         string[] name = Users.AskForName();
+        CreatePeople(name,true);
+    }
+    
+    public static void CreateTarget(string[] name)
+    {
+        CreatePeople(name);
+
+    }
+    
+    static void CreatePeople(string[] name,bool newp = false)
+    {
         string firstName = name.Length> 1 ? string.Join(" ",name.Take(name.Length-1)) : name[0];
         string lastName = name.Length > 1 ? name[1] : "";
         string code = Users.CreateSecretCode();
@@ -63,10 +74,10 @@ public static class People
                 }
             }
 
-            if (print)
+            if (newp)
             {
                 Console.WriteLine($"User {firstName} created!!\nYour secret code is : {code}");
-                Users.LogIn();
+                Menu.Start();
             }
 
         }
@@ -78,8 +89,10 @@ public static class People
 
     public static void GetSecretCode()
     {
-        string[] name = Users.AskForName();
-        string query = $"SELECT secret_code FROM People WHERE first_name = '{name[0]}' AND last_name = '{name[1]}'";
+        string[] name = Users.AskForName(true);
+        string firstName = name.Length> 1 ? string.Join(" ",name.Take(name.Length-1)) : name[0];
+        string lastName = name.Length > 1 ? name[1] : "";
+        string query = $"SELECT secret_code FROM People WHERE first_name = '{firstName}' AND last_name = '{lastName}'";
         string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
         try
         {
@@ -165,6 +178,48 @@ public static class People
             Console.WriteLine("General Error: " + ex.Message);
         }
     }
+    
+
+    public static void GetListByType(string type)
+    {
+        string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
+        string query = $"SELECT * FROM People WHERE type = '{type}' ORDER BY num_reports DESC, num_mentions DESC";
+        try
+        {
+            using (var connection = new MySqlConnection(connstring))
+            {
+    
+                connection.Open();
+                using (var cmd = new MySqlCommand(query, connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id"); 
+                        string first_name = reader.GetString("first_name"); 
+                        string last_name = reader.GetString("last_name"); 
+                        string secret_code = reader.GetString("secret_code"); 
+                        int num_reports = reader.GetInt32("num_reports");
+                        int num_mentions = reader.GetInt32("num_mentions");
+
+                        Console.WriteLine($"ID : {id}\n" +
+                                          $"Name : {first_name+" "+last_name}\n" +
+                                          $"Secret code : {secret_code}\n" +
+                                          $"Num reports : {num_reports}\n" +
+                                          $"Num mentions : {num_mentions}\n");
+                    }
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine("MySQL Error: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("General Error: " + ex.Message);
+        }
+    }
 
     public static void UpdateAndCheckThresholds(int id)
     {
@@ -193,6 +248,10 @@ public static class People
                 Console.WriteLine($"id : {id} is a potential threat.");
                 Console.ResetColor();
             }
+        }
+        else
+        {
+            UpdateType(id,"Reporter");
         }
     }
 
@@ -286,7 +345,5 @@ public static class People
             Console.WriteLine("General Error: " + ex.Message);
         }
     }
-
     
-
 }
