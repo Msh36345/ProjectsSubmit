@@ -22,9 +22,9 @@ public static class Alerts
                 }
             }
         }
-        catch (MySqlException)
+        catch (MySqlException ex)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error "+ex.Message);
         }
         catch (Exception ex)
         {

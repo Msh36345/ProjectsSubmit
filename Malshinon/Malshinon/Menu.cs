@@ -7,11 +7,16 @@ public class Menu
         Welcome();
         while (true)
         {
-            Console.WriteLine("-----Malshinon Menu-----\n" +
-                              "1. start reporting\n" +
-                              "2. restore code\n" +
-                              "3. Manger access\n" +
-                              "4. Exit\n");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("===================================\n" +
+                              "||        Malshinon Menu          ||\n" +
+                              "===================================\n" +
+                              "||     1. start reporting         ||\n" +
+                              "||     2. restore code            ||\n" +
+                              "||     3. Manger access           ||\n" +
+                              "||     4. Exit                    ||\n" +
+                              "====================================");
+            Console.ResetColor();
             string choice = GetChoice();
             switch (choice)
             {
@@ -26,7 +31,11 @@ public class Menu
                     Admin();
                     break;
                 case "4":
-                    Console.WriteLine("Bye bye");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("================\n" +
+                                      "||   Bye bye  ||\n" +
+                                      "================");
+                    Console.ResetColor();
                     return;
                 default:
                     Console.WriteLine("Invalid name, Try again.");
@@ -46,14 +55,18 @@ public class Menu
     {
         while (true)
         {
-            Console.WriteLine("1. all Reporter\n" +
-                              "2. all Target\n" +
-                              "3. all Both\n" +
-                              "4. all potential agent\n" +
-                              "5. all alerts\n" +
-                              "6. get details by ID\n" +
-                              "7. Evaluate Reporter Performance\n" +
-                              "8. back");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("=======================================\n" +
+                              "||      1. all Reporter              ||\n" +
+                              "||      2. all Target                ||\n" +
+                              "||      3. all Both                  ||\n" +
+                              "||      4. all potential agent       ||\n" +
+                              "||      5. all alerts                ||\n" +
+                              "||      6. get details by ID         ||\n" +
+                              "||      7. get Reporter Performance  ||\n" +
+                              "||      8. back                      ||\n" +
+                              "=======================================");
+            Console.ResetColor();
             string choice = GetChoice();
             switch (choice)
             {
@@ -115,16 +128,26 @@ public class Menu
         int count = 0;
         while (count<5)
         {
-            Console.WriteLine("Welcome.");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("=================\n" +
+                              "||  Welcome.   ||\n" +
+                              "=================");
             Thread.Sleep(100); 
             Console.Clear();
-            Console.WriteLine("Welcome..");
+            Console.WriteLine("=================\n" +
+                              "||  Welcome..  ||\n" +
+                              "=================");
             Thread.Sleep(100);
             Console.Clear();
-            Console.WriteLine("Welcome...");
+            Console.WriteLine("=================\n" +
+                              "||  Welcome... ||\n" +
+                              "=================");
             Thread.Sleep(100); 
             Console.Clear();
-            Console.WriteLine("Welcome....");
+            Console.WriteLine("=================\n" +
+                              "||  Welcome....||\n" +
+                              "=================");
+            Console.ResetColor();
             Thread.Sleep(100); 
             Console.Clear();
             count++;

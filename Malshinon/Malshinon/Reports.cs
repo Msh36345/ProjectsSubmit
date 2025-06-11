@@ -17,6 +17,7 @@ public static class Reports
         People.UpdateNumReports(idReporter);
         People.UpdateAndCheckThresholds(idTarget);
         People.UpdateAndCheckThresholds(idReporter);
+        Console.WriteLine("Report added successfully.");
     }
     
     static string ReportText()

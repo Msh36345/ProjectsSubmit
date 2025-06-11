@@ -29,7 +29,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 1");
         }
         catch (Exception ex)
         {
@@ -63,7 +63,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 2");
         }
         catch (Exception ex)
         {
@@ -100,7 +100,7 @@ public static class People
                                           $"Name : {first_name+" "+last_name}\n" +
                                           $"Secret code : {secret_code}\n" +
                                           $"Num reports : {num_reports}\n" +
-                                          $"Num mentions : {num_mentions}\n");
+                                          $"Num mentions : {num_mentions}");
                     }
                 }
             }
@@ -241,7 +241,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 3");
         }
         catch (Exception ex)
         {
@@ -269,7 +269,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 4");
         }
         catch (Exception ex)
         {
@@ -308,7 +308,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 5");
         }
         catch (Exception ex)
         {
@@ -318,7 +318,7 @@ public static class People
     }
     static int GetAvgLengthReport(int id)
     {
-        string query = $"SELECT AVG(LENGTH(text)) AS avg FROM IntelReports WHERE id = '{id}'";
+        string query = $"SELECT AVG(LENGTH(text)) AS avg FROM IntelReports WHERE `reporter_id` = {id}";
         string connstring = "Server=127.0.0.1; database=MalshinonDB; UID=root; password=";
         int avg = 0;
         try
@@ -338,7 +338,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 6");
         }
         catch (Exception ex)
         {
@@ -396,7 +396,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 7");
         }
         catch (Exception ex)
         {
@@ -425,7 +425,7 @@ public static class People
         }
         catch (MySqlException)
         {
-            Console.WriteLine("Database access error");
+            Console.WriteLine("Database access error 8");
         }
         catch (Exception ex)
         {
