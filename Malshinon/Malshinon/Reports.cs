@@ -22,9 +22,19 @@ public static class Reports
     
     static string ReportText()
     {
-        Console.WriteLine("Thank you very much for coming to snitch, please type the report :");
-        string Report = Console.ReadLine();
-        return Report;
+        do
+        {
+            Console.WriteLine("Thank you very much for coming to snitch, please type the report :");
+            string Report = Console.ReadLine();
+            if (Report.Length>0 && Report.Length<256)
+            {
+                return Report;
+            }
+            else
+            {
+                Console.WriteLine("Text incurred.");
+            }
+        } while (true);
     }
 
     static string[] GetNameFromReport(string report)

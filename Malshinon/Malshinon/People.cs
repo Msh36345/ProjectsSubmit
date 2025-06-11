@@ -207,6 +207,7 @@ public static class People
             if (newp)
             {
                 Console.WriteLine($"User {firstName} created!!\nYour secret code is : {code}");
+                Thread.Sleep(8000);
                 Menu.Start();
             }
 
