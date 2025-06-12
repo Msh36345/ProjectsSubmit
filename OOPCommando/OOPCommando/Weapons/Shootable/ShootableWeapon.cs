@@ -2,7 +2,7 @@ namespace OOPCommando;
 
 public class ShootableWeapon
 {
-    protected string Name;
+    public string Name;
     protected string Manufacturer;
     protected int CurrentAmmo;
 

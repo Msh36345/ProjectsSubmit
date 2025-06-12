@@ -2,7 +2,7 @@ namespace OOPCommando;
 
 public class Enemy
 {
-    private string Name;
+    public string Name;
     private int Live;
     private bool status;
 
