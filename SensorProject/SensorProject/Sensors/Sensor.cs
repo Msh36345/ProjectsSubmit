@@ -1,7 +1,6 @@
-namespace SensorProject.Sensors;
+namespace SensorProject;
 
 public abstract class Sensor
 {
-    protected string Type;
-    protected int ID;
+    protected abstract string Type { get; set; }
 }

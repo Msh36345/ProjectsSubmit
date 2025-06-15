@@ -2,18 +2,18 @@ namespace SensorProject;
 
 public abstract class IraniAgent
 {
-    public abstract string Rank { get; set; }
-    public abstract int Id { get; set; }
-    public abstract string[] ExposedSensors { get; set; }
-    public abstract string[] AssignedSensors { get; set; }
+    protected abstract string Rank { get; set; }
+    protected abstract int Id { get; set; }
+    protected abstract Sensor[] ExposedSensors { get; set; }
+    protected abstract Sensor[] AssignedSensors { get; set; }
 
-    public virtual int Activate()
+    public virtual void Activate()
     {
-        List<string> assigned = new List<string>(AssignedSensors);
+        List<Sensor> assigned = new List<Sensor>(AssignedSensors);
         int counter = 0;
-        foreach (string esensor in ExposedSensors)
+        foreach (Sensor esensor in ExposedSensors)
         {
-            foreach (string asensor in assigned)
+            foreach (Sensor asensor in assigned)
             {
                 if (esensor==asensor)
                 {
@@ -22,6 +22,7 @@ public abstract class IraniAgent
                 }
             }
         }
-        return counter;
+
+        Console.WriteLine($"{counter}/{ExposedSensors.Length}");
     }
 }
