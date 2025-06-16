@@ -8,4 +8,12 @@ public class ThermalSensor : Sensor
     {
         Type = "Thermal Sensor";
     }
+    public override bool Equals(object? obj)
+    {
+        if (obj.GetType().Name != "ThermalSensor")
+        {
+            return false;
+        }
+        ThermalSensor s = (ThermalSensor)obj;
+        return this.Type==s.Type ;    }
 }

@@ -10,8 +10,29 @@ public static class SensorManeger
         for (int i = 0; i < num; i++)
         {
             Random rnd = new Random();
-            sensors[i] = sensors[rnd.Next(sensors.Count)];
+            arraySensors[i] = sensors[rnd.Next(sensors.Count)];
+        }
+
+        foreach (Sensor sensor in arraySensors)
+        {
+            Console.WriteLine(sensor.ToString());
         }
         return arraySensors;
+    }
+
+    public static void AddSensor(Sensor sensor)
+    {
+        sensors.Add(sensor);
+    }
+    
+    public static void PrintSensors()
+    {
+        int counter = 1;
+        foreach (Sensor sensor in sensors)
+        {
+            Console.Write($"{counter}. {sensor.ToString()}. ");
+            counter++;
+        }
+        Console.WriteLine();
     }
 }
