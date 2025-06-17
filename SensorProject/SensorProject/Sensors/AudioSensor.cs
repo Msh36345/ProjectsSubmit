@@ -8,12 +8,4 @@ public class AudioSensor : Sensor
     {
         Type = "Audio Sensor";
     }
-    public override bool Equals(object? obj)
-    {
-        if (obj.GetType().Name != "AudioSensor")
-        {
-            return false;
-        }
-        AudioSensor s = (AudioSensor)obj;
-        return this.Type==s.Type ;    }
 }

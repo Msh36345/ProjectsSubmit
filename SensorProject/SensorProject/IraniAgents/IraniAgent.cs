@@ -16,7 +16,7 @@ public abstract class IraniAgent
         {
             for (int j = 0; j < ExposedSensors.Length; j++)
             {
-                if (ExposedSensors[j].ToString() == AssignedSensors[i].ToString())
+                if (ExposedSensors[j] != null && AssignedSensors[i] != null && ExposedSensors[j].ToString() == AssignedSensors[i].ToString())
                 {
                     indexs.Add(i);
                 }
@@ -50,13 +50,17 @@ public abstract class IraniAgent
     {
         SensorManeger.PrintSensors();
         Console.Write($"Select sensor (1-{SensorManeger.sensors.Count}) : ");
-        string inputSensor = Console.ReadLine();
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+        Console.WriteLine();
+        string inputSensor = keyInfo.KeyChar.ToString();
         int choiceSensor = 0;
         while (!(int.TryParse(inputSensor, out choiceSensor) && choiceSensor > 0 &&
                  choiceSensor <= SensorManeger.sensors.Count))
         {
             Console.Write("Invalid input, enter a valid number : ");
-            inputSensor = Console.ReadLine();
+            keyInfo = Console.ReadKey();
+            Console.WriteLine();
+            inputSensor = keyInfo.KeyChar.ToString();
         }
 
         return choiceSensor - 1;
@@ -65,13 +69,15 @@ public abstract class IraniAgent
     protected virtual int SelectPlaceToAssigned()
     {
         Console.Write($"Select place to add/change a sensor (1-{ExposedSensors.Length}) : ");
-        string inputPlace = Console.ReadLine();
-        int choicePlace = 0;
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
+        Console.WriteLine();
+        string inputPlace = keyInfo.KeyChar.ToString();        int choicePlace = 0;
         while (!(int.TryParse(inputPlace, out choicePlace) && choicePlace > 0 && choicePlace <= ExposedSensors.Length))
         {
             Console.Write("Invalid input, enter a valid number : ");
-            inputPlace = Console.ReadLine();
-        }
+            keyInfo = Console.ReadKey();
+            Console.WriteLine();
+            inputPlace = keyInfo.KeyChar.ToString();        }
 
         return choicePlace - 1;
     }

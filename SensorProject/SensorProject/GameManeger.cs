@@ -31,7 +31,7 @@ public static class GameManeger
 Enter your choice : ");
             Console.ResetColor();
             char choice = Console.ReadKey().KeyChar;
-            Thread.Sleep(500);
+            Thread.Sleep(300);
             Console.WriteLine();
             switch (choice)
             {
@@ -111,7 +111,7 @@ Enter your choice : ");
 Enter your choice : ");
             Console.ResetColor();
             char choice = Console.ReadKey().KeyChar;
-            Thread.Sleep(1000);
+            Thread.Sleep(300);
             Console.WriteLine();            switch (choice)
             {
                 case '1':

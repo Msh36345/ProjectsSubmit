@@ -33,14 +33,18 @@ public static class AgentManeger
         else
         {
             Console.WriteLine("Choice  ID agent to ");
-            AgentManeger.PrintAllAgent();
+            PrintAllAgent();
             Console.Write($"Select agent ID to investigate (1-{agents.Count}) : ");
-            string inputAgent = Console.ReadLine();
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            Console.WriteLine();
+            string inputAgent = keyInfo.KeyChar.ToString();
             int choiceAgent = 0;
             while (!(int.TryParse(inputAgent, out choiceAgent) && choiceAgent > 0 && choiceAgent <= agents.Count))
             {
                 Console.Write("Invalid input, enter a valid number : ");
-                inputAgent = Console.ReadLine();
+                keyInfo = Console.ReadKey();
+                Console.WriteLine();
+                inputAgent = keyInfo.KeyChar.ToString();
             }
             return agents[choiceAgent - 1];
         }
