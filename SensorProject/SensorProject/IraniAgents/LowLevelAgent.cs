@@ -4,6 +4,7 @@ public class LowLevelAgent :IraniAgent
 {
     protected override string Rank { get; set; }
     protected override int Id { get; set; }
+    protected override string Status { get; set; }
     protected override Sensor[] ExposedSensors { get; set; }
     protected override Sensor[] AssignedSensors { get; set; }
 
@@ -13,6 +14,6 @@ public class LowLevelAgent :IraniAgent
         Id = AgentManeger.GetId();
         AssignedSensors = new Sensor[2];
         ExposedSensors = SensorManeger.InitSensors(2);
-
+        Status = "Under Investigation";
     }
 }
