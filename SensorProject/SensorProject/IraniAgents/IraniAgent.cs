@@ -7,6 +7,10 @@ public abstract class IraniAgent
     protected abstract Sensor[] ExposedSensors { get; set; }
     protected abstract Sensor[] AssignedSensors { get; set; }
 
+   
+
+
+
     // public virtual void Activate()
     // {
     //     List<Sensor> assigned = new List<Sensor>(AssignedSensors);
@@ -86,5 +90,12 @@ public abstract class IraniAgent
             inputPlace = Console.ReadLine();
         }
         return choicePlace - 1;
+    }
+    
+    public virtual void ToString()
+    {
+        Console.Write($"ID : {Id} || Rank : {Rank} || Sensors : ");
+        Activate();
+        Console.WriteLine();
     }
 }

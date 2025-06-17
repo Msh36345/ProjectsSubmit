@@ -5,15 +5,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        AudioSensor audioSensor = new AudioSensor();
-        ThermalSensor thermalSensor = new ThermalSensor();
-        SensorManeger.AddSensor(audioSensor);
-        SensorManeger.AddSensor(thermalSensor);
-        LowLevelAgent aa = new LowLevelAgent();
-        aa.AssignedSensorToAgenet();
-        aa.AssignedSensorToAgenet();
-        aa.Activate();
-
+        SensorManeger.AddSensor(new AudioSensor());
+        SensorManeger.AddSensor(new ThermalSensor());
+        // LowLevelAgent aa = new LowLevelAgent();
+        // aa.Activate();
+        // aa.AssignedSensorToAgenet();
+        // aa.AssignedSensorToAgenet();
+        GameManeger.Start();
 
     }
 }

@@ -13,6 +13,5 @@ public class LowLevelAgent :IraniAgent
         Id = AgentManeger.GetId();
         AssignedSensors = new Sensor[2];
         ExposedSensors = SensorManeger.InitSensors(2);
-
     }
 }
