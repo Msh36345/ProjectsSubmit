@@ -35,4 +35,10 @@ public static class SensorManeger
         }
         Console.WriteLine();
     }
+
+    public static void Start()
+    {
+        AddSensor(new AudioSensor());
+        AddSensor(new ThermalSensor());
+    }
 }

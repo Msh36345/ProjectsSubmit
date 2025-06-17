@@ -4,48 +4,21 @@ public abstract class IraniAgent
 {
     protected abstract string Rank { get; set; }
     protected abstract int Id { get; set; }
+    protected abstract string Status { get; set; }
     protected abstract Sensor[] ExposedSensors { get; set; }
     protected abstract Sensor[] AssignedSensors { get; set; }
-
-   
-
-
-
-    // public virtual void Activate()
-    // {
-    //     List<Sensor> assigned = new List<Sensor>(AssignedSensors);
-    //     int counter = 0;
-    //     Sensor s = null;
-    //     foreach (Sensor esensor in ExposedSensors)
-    //     {
-    //         foreach (Sensor asensor in assigned)
-    //         {
-    //             if (esensor.Equals(asensor))
-    //             {
-    //                 counter++;
-    //                 s = asensor;
-    //             }
-    //         }
-    //     }
-    //     if (s != null)
-    //     {
-    //         assigned.Remove(s);
-    //     }
-    //
-    //     Console.WriteLine($"{counter}/{ExposedSensors.Length}");
-    // }
 
     public virtual void Activate()
     {
         List<Sensor> assigned = new List<Sensor>(AssignedSensors);
         List<int> indexs = new List<int>();
-        foreach (Sensor esensor in ExposedSensors)
+        for (int i = 0; i < AssignedSensors.Length; i++)
         {
-            foreach (Sensor asensor in AssignedSensors)
+            for (int j = 0; j < ExposedSensors.Length; j++)
             {
-                if (esensor==asensor)
+                if (ExposedSensors[j].ToString() == AssignedSensors[i].ToString())
                 {
-                    indexs.Add(assigned.IndexOf(asensor));
+                    indexs.Add(i);
                 }
             }
         }
@@ -53,7 +26,16 @@ public abstract class IraniAgent
         {
             indexs = indexs.Distinct().ToList();
         }
-        Console.WriteLine($"{indexs.Count}/{ExposedSensors.Length}");
+
+        if (indexs.Count == ExposedSensors.Length)
+        {
+            Console.WriteLine("You cracked the exact sensors !!!");
+            ChangeStatusToCompleted();
+        }
+        else
+        {
+            Console.WriteLine($"Mach : {indexs.Count}/{ExposedSensors.Length}");
+        }
     }
 
     public virtual void AssignedSensorToAgenet()
@@ -61,7 +43,7 @@ public abstract class IraniAgent
         int sensor = SelectSensorToAssigned();
         int place = SelectPlaceToAssigned();
         AssignedSensors[place] = SensorManeger.sensors[sensor];
-        Log.AddLog($"ID : {Id} ,{SensorManeger.sensors[sensor].ToString()} assigned in place {place+1}");
+        Log.AddLog($"ID : {Id} ,{SensorManeger.sensors[sensor].ToString()} assigned in place {place + 1}");
     }
 
     protected virtual int SelectSensorToAssigned()
@@ -70,7 +52,8 @@ public abstract class IraniAgent
         Console.Write($"Select sensor (1-{SensorManeger.sensors.Count}) : ");
         string inputSensor = Console.ReadLine();
         int choiceSensor = 0;
-        while (!(int.TryParse(inputSensor, out choiceSensor) && choiceSensor > 0 && choiceSensor <= SensorManeger.sensors.Count))
+        while (!(int.TryParse(inputSensor, out choiceSensor) && choiceSensor > 0 &&
+                 choiceSensor <= SensorManeger.sensors.Count))
         {
             Console.Write("Invalid input, enter a valid number : ");
             inputSensor = Console.ReadLine();
@@ -89,13 +72,34 @@ public abstract class IraniAgent
             Console.Write("Invalid input, enter a valid number : ");
             inputPlace = Console.ReadLine();
         }
+
         return choicePlace - 1;
     }
-    
+
     public virtual void ToString()
     {
-        Console.Write($"ID : {Id} || Rank : {Rank} || Sensors : ");
-        Activate();
+        Console.Write($"ID : {Id} || Rank : {Rank} || Sensors : {Status}");
         Console.WriteLine();
+    }
+
+    public virtual void ShowAssignedSensors()
+    {
+
+        for (int i = 0; i < AssignedSensors.Length; i++)
+        {
+            if (AssignedSensors[i] == null)
+            {
+                Console.WriteLine($"{i + 1}. null.");
+            }
+            else
+            {
+                Console.WriteLine($"{i + 1}. {AssignedSensors[i].ToString()}");
+            }
+        }
+    }
+
+    protected virtual void ChangeStatusToCompleted()
+    {
+        Status = "Investigation Completed";
     }
 }
