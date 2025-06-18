@@ -1,11 +1,10 @@
 namespace SensorProject;
 
-public class AudioSensor : Sensor
+public class MagneticSensor : Sensor
 {
-
-    public AudioSensor()
+    public MagneticSensor()
     {
-        Type = "Audio Sensor";
+        Type = "Magnetic Sensor";
         Counter = 0;
         CounterFragile = 0;
         Fragile = false;

@@ -49,4 +49,10 @@ public static class AgentManeger
             return agents[choiceAgent - 1];
         }
     }
+
+    public static int Random(int num)
+    {
+        Random rnd = new Random();
+        return rnd.Next(num);
+    }
 }

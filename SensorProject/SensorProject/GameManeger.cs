@@ -66,11 +66,14 @@ Enter your choice : ");
     {
         Console.ForegroundColor = ConsoleColor.DarkBlue;
         Console.Write(@"
-=============================
-||   choice agent to add   ||
-=============================
-||   1. Low Level Agent    ||
-=============================
+===============================
+||    choice agent to add    ||
+===============================
+||   1. Foot Soldier         ||
+||   2. Squad Leader         ||
+||   3. Senior Commander     ||
+||   4. Organization Leader  ||
+===============================
 Enter your choice : ");
         Console.ResetColor();
         char choice = Console.ReadKey().KeyChar;
@@ -78,7 +81,7 @@ Enter your choice : ");
         Console.WriteLine();        switch (choice)
         {
             case '1':
-                AgentManeger.AddAgent(new LowLevelAgent());
+                AgentManeger.AddAgent(new FootSoldier());
                 break;
             default:
                 Console.WriteLine("Invalid choice, please choose again");
@@ -118,7 +121,7 @@ Enter your choice : ");
                     iraniAgent.AssignedSensorToAgenet();
                     break;
                 case '2':
-                    iraniAgent.Activate();
+                    iraniAgent.CheckCompatibility();
                     break;
                 case '3':
                     iraniAgent.ShowAssignedSensors();

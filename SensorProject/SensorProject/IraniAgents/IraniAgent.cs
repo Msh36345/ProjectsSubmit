@@ -2,21 +2,27 @@ namespace SensorProject;
 
 public abstract class IraniAgent
 {
-    protected abstract string Rank { get; set; }
-    protected abstract int Id { get; set; }
-    protected abstract string Status { get; set; }
-    protected abstract Sensor[] ExposedSensors { get; set; }
-    protected abstract Sensor[] AssignedSensors { get; set; }
+    protected virtual string Rank { get; set; }
+    protected virtual int Id { get; set; }
+    protected virtual int Counter { get; set; }
+    protected virtual bool Attack { get; set; }
+    protected virtual int CounterAttack { get; set; }
+    protected virtual int SensorsToDelete { get; set; }
+    protected virtual string Status { get; set; }
+    protected virtual Sensor[] ExposedSensors { get; set; }
+    protected virtual Sensor[] AssignedSensors { get; set; }
+    protected virtual int AvilableSensors { get; set; }
 
-    public virtual void Activate()
+    public virtual void CheckCompatibility()
     {
+        Activet();
         List<Sensor> assigned = new List<Sensor>(AssignedSensors);
         List<int> indexs = new List<int>();
         for (int i = 0; i < AssignedSensors.Length; i++)
         {
             for (int j = 0; j < ExposedSensors.Length; j++)
             {
-                if (ExposedSensors[j] != null && AssignedSensors[i] != null && ExposedSensors[j].ToString() == AssignedSensors[i].ToString())
+                if (ExposedSensors[j] != null && AssignedSensors[i] != null && AssignedSensors[i].Status && ExposedSensors[j].ToString() == AssignedSensors[i].ToString())
                 {
                     indexs.Add(i);
                 }
@@ -35,9 +41,11 @@ public abstract class IraniAgent
         else
         {
             Console.WriteLine($"Mach : {indexs.Count}/{ExposedSensors.Length}");
+            
         }
     }
-
+    
+    
     public virtual void AssignedSensorToAgenet()
     {
         int sensor = SelectSensorToAssigned();
@@ -45,10 +53,11 @@ public abstract class IraniAgent
         AssignedSensors[place] = SensorManeger.sensors[sensor];
         Log.AddLog($"ID : {Id} ,{SensorManeger.sensors[sensor].ToString()} assigned in place {place + 1}");
     }
+    
 
     protected virtual int SelectSensorToAssigned()
     {
-        SensorManeger.PrintSensors();
+        SensorManeger.PrintSensors(AvilableSensors);
         Console.Write($"Select sensor (1-{SensorManeger.sensors.Count}) : ");
         ConsoleKeyInfo keyInfo = Console.ReadKey();
         Console.WriteLine();
@@ -107,5 +116,35 @@ public abstract class IraniAgent
     protected virtual void ChangeStatusToCompleted()
     {
         Status = "Investigation Completed";
+    }
+
+    protected virtual void Activet()
+    {
+        if (Attack)
+        {
+            if (Counter%CounterAttack==0)
+            {
+                for (int i = 0; i < SensorsToDelete; i++)
+                {
+                    AssignedSensors[AgentManeger.Random(AssignedSensors.Length)]=null;
+                }
+                Counter++;
+            }
+        }
+        foreach (Sensor sensor in AssignedSensors)
+        {
+            sensor.SensorActivet();
+        }
+    }
+
+    protected virtual void ResetAttak(int[] indexs)
+    {
+        foreach (int index in indexs)
+        {
+            if (AssignedSensors[index].ToString() == "Magnetic Sensor")
+            {
+                Counter = 0;
+            }
+        }
     }
 }
