@@ -6,7 +6,7 @@ public class MagneticSensor : Sensor
     {
         Type = "Magnetic Sensor";
         Counter = 0;
-        CounterFragile = 0;
+        CounterFragile = 0.5;
         Fragile = false;
         Status = true;
     }

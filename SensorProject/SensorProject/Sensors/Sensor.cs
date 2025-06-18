@@ -5,7 +5,7 @@ public abstract class Sensor
     protected virtual string Type { get; set; }
     protected virtual int Counter { get; set; }
     protected virtual bool Fragile { get; set; }
-    protected virtual int CounterFragile { get; set; }
+    protected virtual double CounterFragile { get; set; }
     public virtual bool Status { get; protected set; }
 
 

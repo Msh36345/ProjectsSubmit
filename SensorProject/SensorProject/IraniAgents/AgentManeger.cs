@@ -2,6 +2,7 @@ namespace SensorProject;
 
 public static class AgentManeger
 {
+    public static int check = 0;
     private static List<IraniAgent> agents = new List<IraniAgent>();
 
     public static int GetId()

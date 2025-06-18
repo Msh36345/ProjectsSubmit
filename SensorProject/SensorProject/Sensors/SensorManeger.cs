@@ -15,7 +15,7 @@ public static class SensorManeger
 
         foreach (Sensor sensor in arraySensors)
         {
-            Console.WriteLine(sensor.ToString());
+            Console.Write(sensor.ToString()+" ");
         }
         return arraySensors;
     }

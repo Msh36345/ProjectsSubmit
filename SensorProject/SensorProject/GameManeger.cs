@@ -64,8 +64,10 @@ Enter your choice : ");
 
     public static void AddAgent()
     {
-        Console.ForegroundColor = ConsoleColor.DarkBlue;
-        Console.Write(@"
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.Write(@"
 ===============================
 ||    choice agent to add    ||
 ===============================
@@ -75,18 +77,69 @@ Enter your choice : ");
 ||   4. Organization Leader  ||
 ===============================
 Enter your choice : ");
-        Console.ResetColor();
-        char choice = Console.ReadKey().KeyChar;
-        Thread.Sleep(200);
-        Console.WriteLine();        switch (choice)
-        {
-            case '1':
-                AgentManeger.AddAgent(new FootSoldier());
-                break;
-            default:
-                Console.WriteLine("Invalid choice, please choose again");
-                Thread.Sleep(2000);
-                break;
+            Console.ResetColor();
+            char choice = Console.ReadKey().KeyChar;
+            Thread.Sleep(200);
+            Console.WriteLine();
+            switch (choice)
+            {
+                case '1':
+                    if (AgentManeger.check == 0)
+                    {
+                        AgentManeger.check++;
+                    }
+                    AgentManeger.AddAgent(new FootSoldier()); 
+                    return;
+                case '2':
+                    if (AgentManeger.check < 1)
+                    {
+                        Console.WriteLine("You must deploy a Foot Soldier agent first.");
+                        break;
+                    }
+                    else
+                    {
+                        AgentManeger.AddAgent(new SquadLeader());
+                        if (AgentManeger.check<2)
+                        {
+                            AgentManeger.check++;
+                        }
+                        return;
+                    }
+                case '3':
+                    if (AgentManeger.check < 2)
+                    {
+                        Console.WriteLine("You must deploy a Squad Leader agent first.");
+                        break;
+                    }
+                    else
+                    {
+                        AgentManeger.AddAgent(new SeniorCommander());
+                        if (AgentManeger.check<3)
+                        {
+                            AgentManeger.check++;
+                        }
+                        return;
+                    }
+                case '4':
+                    if (AgentManeger.check < 3)
+                    {
+                        Console.WriteLine("You must deploy a Senior Commander agent first.");
+                        break;
+                    }
+                    else
+                    {
+                        AgentManeger.AddAgent(new OrganizationLeader());
+                        if (AgentManeger.check<4)
+                        {
+                            AgentManeger.check++;
+                        }
+                        return;
+                    }
+                default:
+                    Console.WriteLine("Invalid choice, please choose again");
+                    Thread.Sleep(2000);
+                    break;
+            }
         }
     }
 

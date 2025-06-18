@@ -52,13 +52,22 @@ public abstract class IraniAgent
         int place = SelectPlaceToAssigned();
         AssignedSensors[place] = SensorManeger.sensors[sensor];
         Log.AddLog($"ID : {Id} ,{SensorManeger.sensors[sensor].ToString()} assigned in place {place + 1}");
+foreach (Sensor sensorr in AssignedSensors)
+{
+    if (sensorr != null)
+        Console.Write(sensorr.ToString() + " ");
+    else
+        Console.Write("null ");
+}
+
+        ;
     }
     
 
     protected virtual int SelectSensorToAssigned()
     {
         SensorManeger.PrintSensors(AvilableSensors);
-        Console.Write($"Select sensor (1-{SensorManeger.sensors.Count}) : ");
+        Console.Write($"Select sensor : ");
         ConsoleKeyInfo keyInfo = Console.ReadKey();
         Console.WriteLine();
         string inputSensor = keyInfo.KeyChar.ToString();
@@ -130,10 +139,13 @@ public abstract class IraniAgent
                 }
                 Counter++;
             }
-        }
-        foreach (Sensor sensor in AssignedSensors)
-        {
-            sensor.SensorActivet();
+        } 
+        foreach (Sensor sensor in AssignedSensors) 
+        { 
+            if (sensor != null) 
+            { 
+                sensor.SensorActivet(); 
+            } 
         }
     }
 

@@ -7,7 +7,7 @@ public class AudioSensor : Sensor
     {
         Type = "Audio Sensor";
         Counter = 0;
-        CounterFragile = 0;
+        CounterFragile = 0.5;
         Fragile = false;
         Status = true;
     }
