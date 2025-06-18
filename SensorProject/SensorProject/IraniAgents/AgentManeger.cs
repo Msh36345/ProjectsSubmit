@@ -2,6 +2,7 @@ namespace SensorProject;
 
 public static class AgentManeger
 {
+    public static int check = 0;
     private static List<IraniAgent> agents = new List<IraniAgent>();
 
     public static int GetId()
@@ -17,9 +18,16 @@ public static class AgentManeger
 
     public static void PrintAllAgent()
     {
-        foreach (IraniAgent iraniAgent in agents)
+        if (agents.Count==0)
         {
-            iraniAgent.ToString();
+            Console.WriteLine("No agents exist yet.");
+        }
+        else
+        {
+            foreach (IraniAgent iraniAgent in agents)
+            {
+                iraniAgent.ToString();
+            }
         }
     }
 
@@ -32,17 +40,27 @@ public static class AgentManeger
         }
         else
         {
-            Console.WriteLine("Choice  ID agent to ");
-            AgentManeger.PrintAllAgent();
+            Console.WriteLine("Choice ID agent :");
+            PrintAllAgent();
             Console.Write($"Select agent ID to investigate (1-{agents.Count}) : ");
-            string inputAgent = Console.ReadLine();
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            Console.WriteLine();
+            string inputAgent = keyInfo.KeyChar.ToString();
             int choiceAgent = 0;
             while (!(int.TryParse(inputAgent, out choiceAgent) && choiceAgent > 0 && choiceAgent <= agents.Count))
             {
                 Console.Write("Invalid input, enter a valid number : ");
-                inputAgent = Console.ReadLine();
+                keyInfo = Console.ReadKey();
+                Console.WriteLine();
+                inputAgent = keyInfo.KeyChar.ToString();
             }
             return agents[choiceAgent - 1];
         }
+    }
+
+    public static int Random(int num)
+    {
+        Random rnd = new Random();
+        return rnd.Next(num);
     }
 }

@@ -4,19 +4,19 @@ public static class SensorManeger
 {
     public static List<Sensor> sensors = new List<Sensor>();
     
-    public static Sensor[] InitSensors(int num)
+    public static Sensor[] InitSensors(int numSensors,int slots)
     {
-        Sensor[] arraySensors = new Sensor[num];
-        for (int i = 0; i < num; i++)
+        Sensor[] arraySensors = new Sensor[slots];
+        for (int i = 0; i < slots; i++)
         {
             Random rnd = new Random();
-            arraySensors[i] = sensors[rnd.Next(sensors.Count)];
+            arraySensors[i] = sensors[rnd.Next(numSensors)];
         }
 
-        foreach (Sensor sensor in arraySensors)
-        {
-            Console.WriteLine(sensor.ToString());
-        }
+        // foreach (Sensor sensor in arraySensors)
+        // {
+        //     Console.Write(sensor.ToString()+" ");
+        // }
         return arraySensors;
     }
 
@@ -24,14 +24,12 @@ public static class SensorManeger
     {
         sensors.Add(sensor);
     }
-    
-    public static void PrintSensors()
+
+    public static void PrintSensors(int length = 7)
     {
-        int counter = 1;
-        foreach (Sensor sensor in sensors)
+        for (int i = 0; i < length; i++)
         {
-            Console.Write($"{counter}. {sensor.ToString()}. ");
-            counter++;
+            Console.Write($"{i+1}. {sensors[i].ToString()} ");
         }
         Console.WriteLine();
     }
@@ -40,5 +38,10 @@ public static class SensorManeger
     {
         AddSensor(new AudioSensor());
         AddSensor(new ThermalSensor());
+        AddSensor(new PulseSensor());
+        AddSensor(new MotionSensor());
+        AddSensor(new MagneticSensor());
+        AddSensor(new SignalSensor());
+        AddSensor(new LightSensor());
     }
 }
