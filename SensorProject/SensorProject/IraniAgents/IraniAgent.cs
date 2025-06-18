@@ -132,7 +132,7 @@ foreach (Sensor sensorr in AssignedSensors)
         Status = "Investigation Completed";
     }
 
-    protected virtual void Activet()
+    private void Activet()
     {
         Counter++;
         Console.WriteLine(Counter);
@@ -145,6 +145,11 @@ foreach (Sensor sensorr in AssignedSensors)
                     AssignedSensors[AgentManeger.Random(AssignedSensors.Length)]=null;
                     Console.WriteLine("A sensor has been deleted!!!");
                 }
+            }
+            if (Rank == "Organization Leader" && Counter % 10 == 0)
+            {
+                ExposedSensors = SensorManeger.InitSensors(7, 8);
+                Console.WriteLine("The sensors have been changed!!!");
             }
         } 
         foreach (Sensor sensor in AssignedSensors) 
