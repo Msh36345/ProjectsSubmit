@@ -18,9 +18,16 @@ public static class AgentManeger
 
     public static void PrintAllAgent()
     {
-        foreach (IraniAgent iraniAgent in agents)
+        if (agents.Count==0)
         {
-            iraniAgent.ToString();
+            Console.WriteLine("No agents exist yet.");
+        }
+        else
+        {
+            foreach (IraniAgent iraniAgent in agents)
+            {
+                iraniAgent.ToString();
+            }
         }
     }
 
@@ -33,7 +40,7 @@ public static class AgentManeger
         }
         else
         {
-            Console.WriteLine("Choice  ID agent to ");
+            Console.WriteLine("Choice ID agent :");
             PrintAllAgent();
             Console.Write($"Select agent ID to investigate (1-{agents.Count}) : ");
             ConsoleKeyInfo keyInfo = Console.ReadKey();

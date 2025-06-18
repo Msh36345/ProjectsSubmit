@@ -162,6 +162,7 @@ Enter your choice : ");
 ||  1. Assigned Sensor      ||
 ||  2. Check compatibility  ||
 ||  3. Get assigned sensors || 
+||  4. Init random sensors  ||
 ||  0. Exit                 ||
 ==============================
 Enter your choice : ");
@@ -178,6 +179,9 @@ Enter your choice : ");
                     break;
                 case '3':
                     iraniAgent.ShowAssignedSensors();
+                    break;
+                case '4':
+                    iraniAgent.RandomInit();
                     break;
                 case '0':
                     return;

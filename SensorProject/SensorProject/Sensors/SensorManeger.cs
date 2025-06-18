@@ -13,10 +13,10 @@ public static class SensorManeger
             arraySensors[i] = sensors[rnd.Next(numSensors)];
         }
 
-        foreach (Sensor sensor in arraySensors)
-        {
-            Console.Write(sensor.ToString()+" ");
-        }
+        // foreach (Sensor sensor in arraySensors)
+        // {
+        //     Console.Write(sensor.ToString()+" ");
+        // }
         return arraySensors;
     }
 
@@ -29,7 +29,7 @@ public static class SensorManeger
     {
         for (int i = 0; i < length; i++)
         {
-            Console.Write($"{i+1}. {sensors[i].ToString()}");
+            Console.Write($"{i+1}. {sensors[i].ToString()} ");
         }
         Console.WriteLine();
     }
@@ -41,5 +41,7 @@ public static class SensorManeger
         AddSensor(new PulseSensor());
         AddSensor(new MotionSensor());
         AddSensor(new MagneticSensor());
+        AddSensor(new SignalSensor());
+        AddSensor(new LightSensor());
     }
 }

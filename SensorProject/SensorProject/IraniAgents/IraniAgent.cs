@@ -16,32 +16,37 @@ public abstract class IraniAgent
     public virtual void CheckCompatibility()
     {
         Activet();
-        List<Sensor> assigned = new List<Sensor>(AssignedSensors);
-        List<int> indexs = new List<int>();
-        for (int i = 0; i < AssignedSensors.Length; i++)
+        List<string> assignedString = new List<string>();
+        List<string> exposedString = new List<string>();
+        foreach (Sensor sensor in AssignedSensors)
         {
-            for (int j = 0; j < ExposedSensors.Length; j++)
+            if (sensor != null)
             {
-                if (ExposedSensors[j] != null && AssignedSensors[i] != null && AssignedSensors[i].Status && ExposedSensors[j].ToString() == AssignedSensors[i].ToString())
-                {
-                    indexs.Add(i);
-                }
+                assignedString.Add(sensor.ToString());
             }
         }
-        if (indexs.Count > 0)
+        foreach (Sensor sensor in ExposedSensors)
         {
-            indexs = indexs.Distinct().ToList();
+            exposedString.Add(sensor.ToString());
         }
-
-        if (indexs.Count == ExposedSensors.Length)
+        int mach = 0;
+        foreach (string sensor in assignedString)
+        {
+            if (exposedString.Contains(sensor))
+            {
+                exposedString.Remove(sensor);
+                Benefits(sensor);
+                mach++;
+            }
+        }
+        if (mach == ExposedSensors.Length)
         {
             Console.WriteLine("You cracked the exact sensors !!!");
             ChangeStatusToCompleted();
         }
         else
         {
-            Console.WriteLine($"Mach : {indexs.Count}/{ExposedSensors.Length}");
-            
+            Console.WriteLine($"Mach : {mach}/{ExposedSensors.Length}");
         }
     }
     
@@ -129,6 +134,8 @@ foreach (Sensor sensorr in AssignedSensors)
 
     protected virtual void Activet()
     {
+        Counter++;
+        Console.WriteLine(Counter);
         if (Attack)
         {
             if (Counter%CounterAttack==0)
@@ -136,8 +143,8 @@ foreach (Sensor sensorr in AssignedSensors)
                 for (int i = 0; i < SensorsToDelete; i++)
                 {
                     AssignedSensors[AgentManeger.Random(AssignedSensors.Length)]=null;
+                    Console.WriteLine("A sensor has been deleted!!!");
                 }
-                Counter++;
             }
         } 
         foreach (Sensor sensor in AssignedSensors) 
@@ -149,14 +156,25 @@ foreach (Sensor sensorr in AssignedSensors)
         }
     }
 
-    protected virtual void ResetAttak(int[] indexs)
-    {
-        foreach (int index in indexs)
+    protected virtual void Benefits(string sensor)
+    { 
+        if (sensor == "Magnetic Sensor") 
         {
-            if (AssignedSensors[index].ToString() == "Magnetic Sensor")
-            {
-                Counter = 0;
-            }
+            Counter = 0;
         }
+        if (sensor == "Signal Sensor")
+        {
+            Console.WriteLine($"Benefits : Counter is {Counter}.");
+        }
+        if (sensor == "Light Sensor")
+        {
+            Console.WriteLine($"Benefits : One Sensor is {ExposedSensors[AgentManeger.Random(ExposedSensors.Length)]}.");
+        }
+    }
+
+    public virtual void RandomInit()
+    {
+        AssignedSensors = SensorManeger.InitSensors(AvilableSensors, ExposedSensors.Length);
+        ShowAssignedSensors();
     }
 }
