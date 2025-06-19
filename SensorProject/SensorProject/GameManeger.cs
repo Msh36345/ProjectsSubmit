@@ -12,7 +12,7 @@ public static class GameManeger
 =============================
 ||  Welcome to sensor game  ||
 =============================");
-        Thread.Sleep(200);
+        Thread.Sleep(2000);
         Console.Clear();
         Console.ResetColor();
         while (true)

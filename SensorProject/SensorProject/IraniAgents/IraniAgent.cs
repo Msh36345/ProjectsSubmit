@@ -67,8 +67,6 @@ foreach (Sensor sensorr in AssignedSensors)
 
         ;
     }
-    
-
     protected virtual int SelectSensorToAssigned()
     {
         SensorManeger.PrintSensors(AvilableSensors);
@@ -88,7 +86,6 @@ foreach (Sensor sensorr in AssignedSensors)
 
         return choiceSensor - 1;
     }
-
     protected virtual int SelectPlaceToAssigned()
     {
         Console.Write($"Select place to add/change a sensor (1-{ExposedSensors.Length}) : ");
