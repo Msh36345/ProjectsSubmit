@@ -1,0 +1,22 @@
+//בודק אלו מתים נכנסו לבית החולים באותו יום ומציג את החדר האחרון שהיו בו
+SELECT visits.id,visits.roomId,visits.personId,visits.timeOfEntry,MAX(visits.timeOfLeaving),hospital_report.incidentTime,hospital_report.timeDiffHours FROM visits
+INNER JOIN hospital_report ON hospital_report.patientId=visits.personId
+INNER JOIN mansion ON mansion.roomId=visits.roomId
+WHERE hospital_report.diagnosis LIKE "The patient is dead%"
+AND date(hospital_report.incidentTime) = date(visits.timeOfLeaving)
+GROUP BY visits.personId;
+
+החדר האחרון ש2 היה זה חדר 4 מזהה 136
+החדר האחרון ש50 היה זה חדר 13 מזהה 198
+
+היחיד שהיה בחדר עם נרצח זה 12
+SELECT * FROM visits
+WHERE roomId = 4 AND visits.personId IN (2,12);
+
+לרוצח היה כלי נשק לבחירה
+SELECT * FROM `people_belongings`
+INNER JOIN objects ON objects.objectId = people_belongings.objectId
+WHERE people_belongings.personId = 12 AND objects.weaponType='Stabbing';
+
+בודק מניע
+SELECT * FROM `journal` WHERE journal.authorId = 12 AND journal.subjectId=2
